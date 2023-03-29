@@ -1,79 +1,109 @@
 #include <Arduino.h>
+#include <ESP32Servo.h>
 
-// Motor A (L298N 1)
-const int motorA1 = 27; // IN1
-const int motorA2 = 26; // IN2
-const int motorAPWM = 25; // ENA
+// Pins for servo motors
+const int frontRightPin = 33;
+const int frontLeftPin = 32;
+const int backRightPin = 22;
+const int backLeftPin = 23;
 
-// Motor B (L298N 1)
-const int motorB1 = 14; // IN3
-const int motorB2 = 12; // IN4
-const int motorBPWM = 13; // ENB
+// Servo objects
+Servo frontRight;
+Servo frontLeft;
+Servo backRight;
+Servo backLeft;
 
-// RSI-90 IR Sensors
-const int irSensor1 = 22;
-const int irSensor2 = 23;
-const int irSensor3 = 4;
-const int irSensor4 = 5;
-const int irSensor5 = 17;
+// Function declarations
+void moveForward(int pulseWidth);
+void moveBackward(int pulseWidth);
+void turnRight(int pulseWidth);
+void turnLeft(int pulseWidth);
+void pause_motor();
 
-// Adjustable PWM control potentiometers
-const int potA = 34;
-const int potB = 35;
-
-int sensorValues[5] = {0, 0, 0, 0, 0};
+void attachAndSetServo(Servo &servo, int pin) {
+  servo.setPeriodHertz(50);
+  servo.attach(pin, 500, 2400);
+}
 
 void setup() {
-  pinMode(motorA1, OUTPUT);
-  pinMode(motorA2, OUTPUT);
-  pinMode(motorAPWM, OUTPUT);
+  Serial.begin(115200);
 
-  pinMode(motorB1, OUTPUT);
-  pinMode(motorB2, OUTPUT);
-  pinMode(motorBPWM, OUTPUT);
-
-  pinMode(irSensor1, INPUT);
-  pinMode(irSensor2, INPUT);
-  pinMode(irSensor3, INPUT);
-  pinMode(irSensor4, INPUT);
-  pinMode(irSensor5, INPUT);
-
-  pinMode(potA, INPUT);
-  pinMode(potB, INPUT);
+  // Attach servos and set their frequency
+  attachAndSetServo(frontRight, frontRightPin);
+  attachAndSetServo(frontLeft, frontLeftPin);
+  attachAndSetServo(backRight, backRightPin);
+  attachAndSetServo(backLeft, backLeftPin);
 }
 
 void loop() {
-  // Read sensor values
-  sensorValues[0] = digitalRead(irSensor1);
-  sensorValues[1] = digitalRead(irSensor2);
-  sensorValues[2] = digitalRead(irSensor3);
-  sensorValues[3] = digitalRead(irSensor4);
-  sensorValues[4] = digitalRead(irSensor5);
+  Serial.println("Moving forward:");
+  moveForward(2000);
+  delay(2000);
 
-  // Read potentiometer values and map to PWM range
-  int pwmA = map(analogRead(potA), 0, 4095, 0, 255);
-  int pwmB = map(analogRead(potB), 0, 4095, 0, 255);
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
+  
+    Serial.println("Moving backward:");
+  moveBackward(1500);
+  delay(2000);
 
-  // Determine motor direction based on sensor values
-  if (sensorValues[0] == HIGH || sensorValues[1] == HIGH) {
-    // Turn left
-    controlMotor(motorA1, motorA2, motorAPWM, pwmA, false);
-    controlMotor(motorB1, motorB2, motorBPWM, pwmB, false);
-  } else if (sensorValues[3] == HIGH || sensorValues[4] == HIGH) {
-    // Turn right
-    controlMotor(motorA1, motorA2, motorAPWM, pwmA, true);
-    controlMotor(motorB1, motorB2, motorBPWM, pwmB, true);
-  } else {
-    // Move forward
-    controlMotor(motorA1, motorA2, motorAPWM, pwmA, true);
-    controlMotor(motorB1, motorB2, motorBPWM, pwmB, true);
-  }
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
 
-  delay(100); // Adjust the delay as needed for responsiveness
+  Serial.println("Turning right:");
+  turnRight(1000);
+  delay(2000);
+
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
+
+  Serial.println("Turning left:");
+  turnLeft(1000);
+  delay(2000);
+
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
+  
+
 }
 
-void controlMotor(int motorPin1, int motorPin2, int motorPWM, int speed, bool direction) {
-  digitalWrite(motorPin1, direction);
-  digitalWrite(motorPin2, !direction);
-  analogWrite(motorPWM, speed);
+void pause_motor() {
+  int pulseWidth = 1500;
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
+}
+
+void moveForward(int pulseWidth) {
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
+}
+
+void moveBackward(int pulseWidth) {
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
+}
+
+void turnRight(int pulseWidth) {
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
+}
+
+
+void turnLeft(int pulseWidth) {
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
 }
