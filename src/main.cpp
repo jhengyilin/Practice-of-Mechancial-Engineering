@@ -1,79 +1,33 @@
+// (c) Michael Schoeffler 2017, http://www.mschoeffler.de
+// #include <Wire.h>
 #include <Arduino.h>
 
-// Motor A (L298N 1)
-const int motorA1 = 27; // IN1
-const int motorA2 = 26; // IN2
-const int motorAPWM = 25; // ENA
-
-// Motor B (L298N 1)
-const int motorB1 = 14; // IN3
-const int motorB2 = 12; // IN4
-const int motorBPWM = 13; // ENB
-
-// RSI-90 IR Sensors
-const int irSensor1 = 22;
-const int irSensor2 = 23;
-const int irSensor3 = 4;
-const int irSensor4 = 5;
-const int irSensor5 = 17;
-
-// Adjustable PWM control potentiometers
-const int potA = 34;
-const int potB = 35;
-
-int sensorValues[5] = {0, 0, 0, 0, 0};
+// The ADC driver API supports ADC1 (8 channels, attached to GPIOs 32 - 39), and ADC2 (10 channels, attached to GPIOs 0, 2, 4, 12 - 15 and 25 - 27).
+const int IN_A0 = 4; // analog input
+const int IN_D0 = 18; // digital input
 
 void setup() {
-  pinMode(motorA1, OUTPUT);
-  pinMode(motorA2, OUTPUT);
-  pinMode(motorAPWM, OUTPUT);
-
-  pinMode(motorB1, OUTPUT);
-  pinMode(motorB2, OUTPUT);
-  pinMode(motorBPWM, OUTPUT);
-
-  pinMode(irSensor1, INPUT);
-  pinMode(irSensor2, INPUT);
-  pinMode(irSensor3, INPUT);
-  pinMode(irSensor4, INPUT);
-  pinMode(irSensor5, INPUT);
-
-  pinMode(potA, INPUT);
-  pinMode(potB, INPUT);
+  pinMode (IN_A0, INPUT);
+  pinMode (IN_D0, INPUT);
+  Serial.begin(115200);
 }
+
+int value_A0;
+bool value_D0;
 
 void loop() {
-  // Read sensor values
-  sensorValues[0] = digitalRead(irSensor1);
-  sensorValues[1] = digitalRead(irSensor2);
-  sensorValues[2] = digitalRead(irSensor3);
-  sensorValues[3] = digitalRead(irSensor4);
-  sensorValues[4] = digitalRead(irSensor5);
 
-  // Read potentiometer values and map to PWM range
-  int pwmA = map(analogRead(potA), 0, 4095, 0, 255);
-  int pwmB = map(analogRead(potB), 0, 4095, 0, 255);
+  value_A0 = analogRead(IN_A0); // reads the analog input from the IR distance sensor
+  value_D0 = digitalRead(IN_D0);// reads the digital input from the IR distance sensor
+  
 
-  // Determine motor direction based on sensor values
-  if (sensorValues[0] == HIGH || sensorValues[1] == HIGH) {
-    // Turn left
-    controlMotor(motorA1, motorA2, motorAPWM, pwmA, false);
-    controlMotor(motorB1, motorB2, motorBPWM, pwmB, false);
-  } else if (sensorValues[3] == HIGH || sensorValues[4] == HIGH) {
-    // Turn right
-    controlMotor(motorA1, motorA2, motorAPWM, pwmA, true);
-    controlMotor(motorB1, motorB2, motorBPWM, pwmB, true);
-  } else {
-    // Move forward
-    controlMotor(motorA1, motorA2, motorAPWM, pwmA, true);
-    controlMotor(motorB1, motorB2, motorBPWM, pwmB, true);
-  }
+  Serial.println("Analog:");
+  Serial.println(value_A0); // prints analog value on the LCD module
+  
 
-  delay(100); // Adjust the delay as needed for responsiveness
-}
+  Serial.println("Digital:");
 
-void controlMotor(int motorPin1, int motorPin2, int motorPWM, int speed, bool direction) {
-  digitalWrite(motorPin1, direction);
-  digitalWrite(motorPin2, !direction);
-  analogWrite(motorPWM, speed);
+  Serial.println(value_D0); // prints digital value on the LCD module
+  
+  delay(500);
 }
