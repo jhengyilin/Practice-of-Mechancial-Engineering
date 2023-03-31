@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <ESP32Servo.h>
+#include <ESP32Servo.h>
 
 // Pins for servo motors
 const int frontRightPin = 33;
@@ -17,7 +18,18 @@ Servo frontRight;
 Servo frontLeft;
 Servo backRight;
 Servo backLeft;
+// Servo objects
+Servo frontRight;
+Servo frontLeft;
+Servo backRight;
+Servo backLeft;
 
+// Function declarations
+void moveForward(int pulseWidth);
+void moveBackward(int pulseWidth);
+void turnRight(int pulseWidth);
+void turnLeft(int pulseWidth);
+void pause_motor();
 // Function declarations
 void moveForward(int pulseWidth);
 void moveBackward(int pulseWidth);
@@ -29,8 +41,13 @@ void attachAndSetServo(Servo &servo, int pin) {
   servo.setPeriodHertz(50);
   servo.attach(pin, 500, 2400);
 }
+void attachAndSetServo(Servo &servo, int pin) {
+  servo.setPeriodHertz(50);
+  servo.attach(pin, 500, 2400);
+}
 
 void setup() {
+  Serial.begin(115200);
   Serial.begin(115200);
 
   // Attach servos and set their frequency
