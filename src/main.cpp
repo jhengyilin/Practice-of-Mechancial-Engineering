@@ -1,33 +1,109 @@
-// (c) Michael Schoeffler 2017, http://www.mschoeffler.de
-// #include <Wire.h>
 #include <Arduino.h>
+#include <ESP32Servo.h>
 
-// The ADC driver API supports ADC1 (8 channels, attached to GPIOs 32 - 39), and ADC2 (10 channels, attached to GPIOs 0, 2, 4, 12 - 15 and 25 - 27).
-const int IN_A0 = 4; // analog input
-const int IN_D0 = 18; // digital input
+// Pins for servo motors
+const int frontRightPin = 33;
+const int frontLeftPin = 32;
+const int backRightPin = 22;
+const int backLeftPin = 23;
 
-void setup() {
-  pinMode (IN_A0, INPUT);
-  pinMode (IN_D0, INPUT);
-  Serial.begin(115200);
+// Servo objects
+Servo frontRight;
+Servo frontLeft;
+Servo backRight;
+Servo backLeft;
+
+// Function declarations
+void moveForward(int pulseWidth);
+void moveBackward(int pulseWidth);
+void turnRight(int pulseWidth);
+void turnLeft(int pulseWidth);
+void pause_motor();
+
+void attachAndSetServo(Servo &servo, int pin) {
+  servo.setPeriodHertz(50);
+  servo.attach(pin, 500, 2400);
 }
 
-int value_A0;
-bool value_D0;
+void setup() {
+  Serial.begin(115200);
+
+  // Attach servos and set their frequency
+  attachAndSetServo(frontRight, frontRightPin);
+  attachAndSetServo(frontLeft, frontLeftPin);
+  attachAndSetServo(backRight, backRightPin);
+  attachAndSetServo(backLeft, backLeftPin);
+}
 
 void loop() {
+  Serial.println("Moving forward:");
+  moveForward(2000);
+  delay(2000);
 
-  value_A0 = analogRead(IN_A0); // reads the analog input from the IR distance sensor
-  value_D0 = digitalRead(IN_D0);// reads the digital input from the IR distance sensor
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
+  
+    Serial.println("Moving backward:");
+  moveBackward(1000);
+  delay(2000);
+
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
+
+  Serial.println("Turning right:");
+  turnRight(500);
+  delay(2000);
+
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
+
+  Serial.println("Turning left:");
+  turnLeft(500);
+  delay(2000);
+
+  Serial.println("Pausing for 2 seconds.");
+  pause_motor();
+  delay(2000);
   
 
-  Serial.println("Analog:");
-  Serial.println(value_A0); // prints analog value on the LCD module
-  
+}
 
-  Serial.println("Digital:");
+void pause_motor() {
+  int pulseWidth = 1500;
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
+}
 
-  Serial.println(value_D0); // prints digital value on the LCD module
-  
-  delay(500);
+void moveForward(int pulseWidth) {
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
+}
+
+void moveBackward(int pulseWidth) {
+  frontRight.writeMicroseconds(pulseWidth);
+  frontLeft.writeMicroseconds(pulseWidth);
+  backRight.writeMicroseconds(pulseWidth);
+  backLeft.writeMicroseconds(pulseWidth);
+}
+
+void turnRight(int pulseWidth) {
+  frontRight.writeMicroseconds(1500 - pulseWidth);
+  frontLeft.writeMicroseconds(1500 + pulseWidth);
+  backRight.writeMicroseconds(1500 - pulseWidth);
+  backLeft.writeMicroseconds(1500 + pulseWidth);
+}
+
+
+void turnLeft(int pulseWidth) {
+  frontRight.writeMicroseconds(1500 + pulseWidth);
+  frontLeft.writeMicroseconds(1500 - pulseWidth);
+  backRight.writeMicroseconds(1500 + pulseWidth);
+  backLeft.writeMicroseconds(1500 - pulseWidth);
 }
