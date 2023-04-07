@@ -2,20 +2,20 @@
 #include <ESP32Servo.h>
 #include "../include/motorControl.h"
 #include "../include/constantDefinition.h"
+#include "detectToLift.cpp"
 
-// Initialize the four motor control object with pulse width 1500 as base 
 FourWheel vehicle(1500);
 
 void setup() {
   Serial.begin(115200);
 
+  // Initialize the four motor control object with pulse width 1500 as base 
+  vehicle.setup();
+
   pinMode (IN_A0, INPUT);
   pinMode (IN_D0, INPUT);
 }
 
-void line_tracking(){
-  return ;
-}
 
 int value_A0;
 bool value_D0;
