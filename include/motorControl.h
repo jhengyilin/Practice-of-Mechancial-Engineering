@@ -27,9 +27,4 @@ class FourWheel : public Servo{
         void attachAndSetServo(Servo &servo, int pin);
 };
 
-
-FourWheel::FourWheel(int pulseWidth) {
-    this->pulseWidth = pulseWidth;
-}
-
 #endif // MOTORCONTROL_H

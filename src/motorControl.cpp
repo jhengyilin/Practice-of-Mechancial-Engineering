@@ -2,6 +2,10 @@
 #include <Arduino.h>
 #include <ESP32Servo.h>
 
+FourWheel::FourWheel(int pulseWidth) {
+    this->pulseWidth = pulseWidth;
+}
+
 void FourWheel::setup() {
   // Attach servos and set their frequency
   attachAndSetServo(frontRight, frontRightPin);

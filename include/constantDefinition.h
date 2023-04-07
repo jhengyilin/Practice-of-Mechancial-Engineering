@@ -2,10 +2,10 @@
 #define constantDefinition_h
 
 // Pins for 4 wheel servo motors
-const int frontRightPin = 33;
-const int frontLeftPin = 32;
-const int backRightPin = 22;
-const int backLeftPin = 23;
+const int frontRightPin = 32;
+const int frontLeftPin = 33;
+const int backRightPin = 23;
+const int backLeftPin = 22;
 
 // Pins for IR sensors
 // The ADC driver API supports ADC1 (8 channels, attached to GPIOs 32 - 39)
