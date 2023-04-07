@@ -13,6 +13,9 @@ void setup() {
   pinMode (IN_D0, INPUT);
 }
 
+void line_tracking(){
+  return ;
+}
 
 int value_A0;
 bool value_D0;
