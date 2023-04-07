@@ -23,18 +23,18 @@ void setup() {
 void line_tracking(int analog_0, int analog_1, int digital_0, int digital_1, FourWheel *car){
   // let 0 on the left and 1 on the right
   // we hope that each will not touch the black line so that it can 
-  if (analog_0 < BLACK_LINE_DETECT_THRESHOLD){ // the left touchess the blackline
-    // turn right 
-    car->turnRight(100);
-    delay(100);
+  if (analog_0 > BLACK_LINE_DETECT_THRESHOLD){ // the left touchess the blackline
+    // turn left 
+    car->turnLeft(200);
+    delay(50);
   }
-  else if (analog_1 < BLACK_LINE_DETECT_THRESHOLD){
-    car->turnLeft(100);
-    delay(100);
+  else if (analog_1 > BLACK_LINE_DETECT_THRESHOLD){
+    car->turnRight(200);
+    delay(50);
   }
   else{
     car->moveForward(200);
-    delay(100);
+    delay(50);
   }
 }
 

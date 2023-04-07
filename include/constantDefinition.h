@@ -18,8 +18,8 @@ const int IN_D1 = 19; // digital input
 
 // Pin definition for the lifting servo motor
 #define LIFT_SERVO_PIN 14
-// Threshold value for the IR sensors to detect black line
-#define BLACK_LINE_DETECT_THRESHOLD 800
+// Threshold value++ for the IR sensors to detect black line 
+#define BLACK_LINE_DETECT_THRESHOLD 1500
 
 // Pulse width values for servo motor
 #define WING_DOWN_PAUSE_PULSE 1500
