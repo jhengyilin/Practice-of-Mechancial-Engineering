@@ -15,7 +15,7 @@ class FourWheel : public Servo{
         void turnRight(int pulseWidth);
         void turnLeft(int pulseWidth);
         void pause_motor();
-        void attachAndSetServo(Servo &servo, int pin);
+        void setup();
 
     private:
         int pulseWidth;
@@ -23,17 +23,13 @@ class FourWheel : public Servo{
         Servo frontLeft;
         Servo backRight;
         Servo backLeft;
+
+        void attachAndSetServo(Servo &servo, int pin);
 };
 
 
 FourWheel::FourWheel(int pulseWidth) {
     this->pulseWidth = pulseWidth;
-
-    // Attach servos and set their frequency
-    attachAndSetServo(frontRight, frontRightPin);
-    attachAndSetServo(frontLeft, frontLeftPin);
-    attachAndSetServo(backRight, backRightPin);
-    attachAndSetServo(backLeft, backLeftPin);
 }
 
 #endif // MOTORCONTROL_H
