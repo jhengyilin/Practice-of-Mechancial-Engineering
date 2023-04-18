@@ -10,11 +10,11 @@ const int backLeftPin = 22;
 // Pins for IR sensors
 // The ADC driver API supports ADC1 (8 channels, attached to GPIOs 32 - 39)
 // and ADC2 (10 channels, attached to GPIOs 0, 2, 4, 12 - 15 and 25 - 27)
-const int IN_A0 = 34; // analog input
-const int IN_A1 = 35; // analog input
+const int IN_A0 = 12; // analog input
+const int IN_A1 = 14; // analog input
 
-const int IN_A2 = 25; // digital input
-const int IN_A3 = 26; // digital input
+const int IN_A2 = 0; // digital input
+const int IN_A3 = 2; // digital input
 
 // Pin definition for the lifting servo motor
 #define LIFT_SERVO_PIN 14

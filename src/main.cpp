@@ -39,6 +39,8 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
       value_A1 = analogRead(IN_A1);
     }
   }
+
+  
   // normal condition 
   if (analog_1 > BLACK_LINE_DETECT_THRESHOLD && analog_2 > BLACK_LINE_DETECT_THRESHOLD){
     car->moveForward(200);
