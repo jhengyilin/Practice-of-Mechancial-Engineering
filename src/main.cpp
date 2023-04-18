@@ -22,7 +22,7 @@ void setup() {
 // set up four tcrt from left to right as 0, 1, 2, 3
 // mainly we use 1 and 2 to detect the black line
 void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourWheel *car){
-  
+  // extreme condition 
   if (analog_0 > BLACK_LINE_DETECT_THRESHOLD){
     // move drastically until number 2 touches the line 
     while (value_A2 < BLACK_LINE_DETECT_THRESHOLD){
@@ -32,7 +32,7 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
     }
   }
   // if the right most touches the blackline 
-  else if (analog_3 > BLACK_LINE_DETECT_THRESHOLD){
+  if (analog_3 > BLACK_LINE_DETECT_THRESHOLD){
     while (value_A1 < BLACK_LINE_DETECT_THRESHOLD){
       car->turnRight(200);
       delay(50);
