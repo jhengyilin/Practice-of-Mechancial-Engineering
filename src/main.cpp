@@ -40,7 +40,7 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
     }
   }
 
-  
+
   // normal condition 
   if (analog_1 > BLACK_LINE_DETECT_THRESHOLD && analog_2 > BLACK_LINE_DETECT_THRESHOLD){
     car->moveForward(200);
@@ -64,6 +64,11 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
 int value_A0, value_A1, value_A2, value_A3;
 
 void loop() {
+if (millis() - startTime >= 5000 && !five_seconds) {
+    detectAndLift();
+    five_seconds = true;
+  }
+
   // reads the analog input from the IR distance sensor
   value_A0 = analogRead(IN_A0); 
   value_A1 = analogRead(IN_A1);// reads the digital input from the IR distance sensor

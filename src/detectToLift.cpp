@@ -4,25 +4,22 @@
 #include "detectToLift.h"
 
 // Initialize the servo motor
-Servo WingServo;
+Servo WingServo_front, WingServo_back;
 
-void setupDetectToLift() {
+void attachAndSetServo(Servo &servo, int pin) {
+  servo.setPeriodHertz(50);
+  servo.attach(pin, 500, 2500);
+}
+
+void setupTwoServo() {
   // Configure the IR sensor pins as input
-  pinMode(IN_A0, INPUT);
-  pinMode(IN_A1, INPUT);
-
-  // Attach the servo motor to the pin and set the initial pulse width
-  WingServo.attach(LIFT_SERVO_PIN, 500, 2400);
-  WingServo.writeMicroseconds(WING_DOWN_PAUSE_PULSE);
+  attachAndSetServo(WingServo_front, LIFT_SERVO_PIN_Front);
+  attachAndSetServo(WingServo_back, LIFT_SERVO_PIN_Back);
 }
 
-void detectAndLift() {
-  int irValue1 = analogRead(IN_A0);
-  int irValue2 = analogRead(IN_A1);
-
-  if (irValue1 < BLACK_LINE_DETECT_THRESHOLD && irValue2 < BLACK_LINE_DETECT_THRESHOLD) {
-    WingServo.writeMicroseconds(WING_UP_PULSE);
-  } else {
-    WingServo.writeMicroseconds(WING_UP_PULSE);
-  }
+// sleep 5 seconds and lift 
+void Lift(Servo &front, Servo &back) {
+  front.write(240);
+  back.write(240);
 }
+
