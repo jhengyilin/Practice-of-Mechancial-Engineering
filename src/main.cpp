@@ -27,7 +27,7 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
     // move drastically until number 2 touches the line 
     while (value_A2 < BLACK_LINE_DETECT_THRESHOLD){
       car->turnLeft(200);
-      delay(50);
+      delay(20);
       value_A2 = analogRead(IN_A2);
     }
   }
@@ -35,23 +35,23 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
   if (analog_3 > BLACK_LINE_DETECT_THRESHOLD){
     while (value_A1 < BLACK_LINE_DETECT_THRESHOLD){
       car->turnRight(200);
-      delay(50);
+      delay(20);
       value_A1 = analogRead(IN_A1);
     }
   }
-
 
   // normal condition 
   if (analog_1 > BLACK_LINE_DETECT_THRESHOLD && analog_2 > BLACK_LINE_DETECT_THRESHOLD){
     car->moveForward(200);
     delay(200);
   }
-  else if (analog_1 > BLACK_LINE_DETECT_THRESHOLD){ // the left touchess the blackline
+  else if (analog_1 > BLACK_LINE_DETECT_THRESHOLD){ // the left touches the blackline
     // turn left 
     car->turnLeft(100);
     delay(50);
   }
   else if (analog_2 > BLACK_LINE_DETECT_THRESHOLD){ // the right touches blackline
+  // turn right 
     car->turnRight(100);
     delay(50);
   }
@@ -72,9 +72,9 @@ void loop() {
 
   // reads the analog input from the IR distance sensor
   value_A0 = analogRead(IN_A0); 
-  value_A1 = analogRead(IN_A1);// reads the digital input from the IR distance sensor
-  value_A2 = analogRead(IN_A2); // reads the analog input from the IR distance sensor
-  value_A3 = analogRead(IN_A3);// reads the digital input from the IR distance sensor
+  value_A1 = analogRead(IN_A1);
+  value_A2 = analogRead(IN_A2);
+  value_A3 = analogRead(IN_A3);
 
   line_tracking(value_A0,value_A1, value_A2, value_A3, &vehicle);
 
