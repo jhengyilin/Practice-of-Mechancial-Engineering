@@ -64,10 +64,11 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
 int value_A0, value_A1, value_A2, value_A3;
 
 void loop() {
-if (millis() - startTime >= 5000 && !five_seconds) {
-    detectAndLift();
-    five_seconds = true;
-  }
+  // sleep five seconds and use only once 
+  if (millis() - startTime >= 5000 && !five_seconds) {
+      detectAndLift();
+      five_seconds = true;
+    }
 
   // reads the analog input from the IR distance sensor
   value_A0 = analogRead(IN_A0); 
