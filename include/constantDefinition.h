@@ -13,8 +13,8 @@ const int backLeftPin = 22;
 const int IN_A0 = 34; // analog input
 const int IN_A1 = 35; // analog input
 
-const int IN_D0 = 18; // digital input
-const int IN_D1 = 19; // digital input
+const int IN_A2 = 25; // digital input
+const int IN_A3 = 26; // digital input
 
 // Pin definition for the lifting servo motor
 #define LIFT_SERVO_PIN 14
