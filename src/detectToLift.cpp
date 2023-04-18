@@ -19,6 +19,7 @@ void setupTwoServo() {
 
 // sleep 5 seconds and lift 
 void Lift(Servo &front, Servo &back) {
+  setupTwoServo();
   front.write(240);
   back.write(240);
 }
