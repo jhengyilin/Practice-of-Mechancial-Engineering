@@ -71,11 +71,5 @@ void loop() {
     }
 
   // reads the analog input from the IR distance sensor
-  value_A0 = analogRead(IN_A0); 
-  value_A1 = analogRead(IN_A1);
-  value_A2 = analogRead(IN_A2);
-  value_A3 = analogRead(IN_A3);
-
   line_tracking(value_A0,value_A1, value_A2, value_A3, &vehicle);
-
 }
