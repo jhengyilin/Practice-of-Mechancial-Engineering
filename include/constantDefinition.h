@@ -22,7 +22,7 @@ const int IN_A3 = 0; // digital input
 
 
 // Threshold value++ for the IR sensors to detect black line 
-#define BLACK_LINE_DETECT_THRESHOLD 1500
+#define BLACK_LINE_DETECT_THRESHOLD 120
 
 // Pulse width values for servo motor
 #define WING_DOWN_PAUSE_PULSE 1500

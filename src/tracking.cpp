@@ -4,7 +4,7 @@
 #include "detectToLift.h"
 #include "motorControl.h"
 
-void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourWheel *car){
+void line_tracking(FourWheel *car){
     int* value_A0 = new int;
     int* value_A1 = new int;
     int* value_A2 = new int;
@@ -14,7 +14,7 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
     *value_A2 = analogRead(IN_A2);
     *value_A3 = analogRead(IN_A3);
     // extreme condition 
-    if (analog_0 > BLACK_LINE_DETECT_THRESHOLD){
+    if (*value_A0 > BLACK_LINE_DETECT_THRESHOLD){
         // move drastically until number 2 touches the line 
         while (*value_A2 < BLACK_LINE_DETECT_THRESHOLD){
             car->turnLeft(200);
@@ -23,7 +23,7 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
         }
     }
     // if the right most touches the blackline 
-    if (analog_3 > BLACK_LINE_DETECT_THRESHOLD){
+    if (*value_A1 > BLACK_LINE_DETECT_THRESHOLD){
         while (*value_A1 < BLACK_LINE_DETECT_THRESHOLD){
             car->turnRight(200);
             delay(20);
@@ -32,16 +32,16 @@ void line_tracking(int analog_0, int analog_1, int analog_2, int analog_3, FourW
     }
 
     // normal condition 
-    if (analog_1 > BLACK_LINE_DETECT_THRESHOLD && analog_2 > BLACK_LINE_DETECT_THRESHOLD){
+    if (*value_A1> BLACK_LINE_DETECT_THRESHOLD && *value_A2 > BLACK_LINE_DETECT_THRESHOLD){
         car->moveForward(200);
         delay(200);
     }
-    else if (analog_1 > BLACK_LINE_DETECT_THRESHOLD){ // the left touches the blackline
+    else if (*value_A1 > BLACK_LINE_DETECT_THRESHOLD){ // the left touches the blackline
         // turn left 
         car->turnLeft(100);
         delay(50);
     }
-    else if (analog_2 > BLACK_LINE_DETECT_THRESHOLD){ // the right touches blackline
+    else if (*value_A2 > BLACK_LINE_DETECT_THRESHOLD){ // the right touches blackline
         // turn right 
         car->turnRight(100);
         delay(50);
