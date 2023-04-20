@@ -21,14 +21,13 @@ void setup() {
   
 }
 
-
-
 void loop() {
   // sleep five seconds and use only once 
-  if (millis() - startTime >= 5000 && !five_seconds) {
-      Lift();
-      five_seconds = true;
-    }
+  // current not needed in midterm test
+  // if (millis() - startTime >= 5000 && !five_seconds) {
+  //     Lift();
+  //     five_seconds = true;
+  // }
 
   // reads the analog input from the IR distance sensor
   line_tracking(&vehicle);
