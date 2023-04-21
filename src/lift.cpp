@@ -27,8 +27,6 @@ void setup() {
 
 void loop() {
 
-
-
 	// front = 18 back = 19
 	// for the front motor its upper height is limited by pos = 0 and lower height is limited by pos = 55
 	
@@ -40,7 +38,6 @@ void loop() {
 		delay(150);             // waits 15ms for the servo to reach the position
 	}
 	delay(2000);
-	
 	
 
 }
