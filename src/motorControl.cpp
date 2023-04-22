@@ -22,14 +22,14 @@ void FourWheel::pause_motor() {
   backLeft.writeMicroseconds(pulseWidth);
 }
 
-void FourWheel::moveForward(int pulseWidth) {
+void FourWheel::moveBackward(int pulseWidth) {
   frontRight.writeMicroseconds(1500 + pulseWidth);
   frontLeft.writeMicroseconds(1500 - pulseWidth);
   backRight.writeMicroseconds(1500 + pulseWidth);
   backLeft.writeMicroseconds(1500 - pulseWidth);
 }
 
-void FourWheel::moveBackward(int pulseWidth) {
+void FourWheel::moveForward(int pulseWidth) {
   frontRight.writeMicroseconds(1500 - pulseWidth);
   frontLeft.writeMicroseconds(1500 + pulseWidth);
   backRight.writeMicroseconds(1500 - pulseWidth);

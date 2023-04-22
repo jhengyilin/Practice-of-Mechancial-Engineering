@@ -3,6 +3,6 @@
 
 #include <ESP32Servo.h>
 
-void line_tracking(Servo *servo);
+void line_tracking (FourWheel *car);
 
 #endif // LINE_TRACKING_H
