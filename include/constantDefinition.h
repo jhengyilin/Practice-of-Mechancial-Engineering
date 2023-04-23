@@ -14,7 +14,7 @@ const int IN_A0 = 14; // analog input
 const int IN_A1 = 12; // analog input
 
 const int IN_A2 = 2; // digital input
-const int IN_A3 = 4; // digital input
+const int IN_A3 = 0; // digital input
 
 // Pin definition for the lifting servo motor
 #define LIFT_SERVO_PIN_Front 18
