@@ -16,6 +16,7 @@
 
 // void setup() {
 
+<<<<<<< HEAD
 // 	myservo1.setPeriodHertz(50);    // standard 50 hz servo
 // 	myservo1.attach(servo1Pin, 500, 2500); // attaches the servo on pin 18 to the servo object
 // 	myservo2.setPeriodHertz(50);    // standard 50 hz servo
@@ -26,9 +27,20 @@
 // 	// different servos may require different min/max settings
 // 	// for an accurate 0 to 180 sweep
 // }
+=======
+	myservo1.setPeriodHertz(50);    // standard 50 hz servo
+	myservo1.attach(servo1Pin, 500, 2500); // attaches the servo on pin 18 to the servo object
+	myservo2.setPeriodHertz(50);    // standard 50 hz servo
+	myservo2.attach(servo2Pin, 500, 2500);
+	// using default min/max of 500us and 2500us
+	// different servos may require different min/max settings
+	// for an accurate 0 to 180 sweep
+}
+>>>>>>> be0ab6a8e2b269d38df173fd31eb2bc501e55c14
 
 // void loop() {
 
+<<<<<<< HEAD
 
 
 // 	// front = 18 back = 19
@@ -51,7 +63,19 @@
 // 		delay(150);             // waits 15ms for the servo to reach the position
 // 	}
 // 	delay(2000);
+=======
+	// front = 18 back = 19
+	// for the front motor its upper height is limited by pos = 0 and lower height is limited by pos = 55
 	
+	for (pos = 55; pos >= -5; pos -= 1) { // goes from 180 degrees to 0 degrees
+		myservo1.write(pos);
+		myservo3.write(pos);
+		// 65 is the shifting for rear motor the larger, the larger the 65, the higher the rear motor shift  
+		myservo2.write(0.9*(65 - pos));    // tell servo to go to position in variable 'pos'
+		delay(150);             // waits 15ms for the servo to reach the position
+	}
+	delay(2000);
+>>>>>>> be0ab6a8e2b269d38df173fd31eb2bc501e55c14
 	
 
 // }
