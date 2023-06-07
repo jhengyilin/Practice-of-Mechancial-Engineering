@@ -10,7 +10,7 @@ void line_tracking(FourWheel *car){
     int* value_A2 = new int;
     int* value_A3 = new int;
     *value_A0 = analogRead(IN_A0); 
-    *value_A1 = analogRead(IN_A1) - 700;
+    *value_A1 = analogRead(IN_A1);
     *value_A2 = analogRead(IN_A2);
     *value_A3 = analogRead(IN_A3);
 
@@ -21,10 +21,10 @@ void line_tracking(FourWheel *car){
     Serial.print("  A2:");
     Serial.print(*value_A2); 
     Serial.print("  A3:");
-    Serial.println(*value_A3);
+    Serial.println(*value_A3); 
 
+    // extreme condition 
 
-    // // extreme condition 
     // if (*value_A0 > BLACK_LINE_DETECT_THRESHOLD){
     //     // move drastically until number 2 touches the line 
     //     while (*value_A2 < BLACK_LINE_DETECT_THRESHOLD){
@@ -41,6 +41,8 @@ void line_tracking(FourWheel *car){
     //         *value_A1 = analogRead(IN_A1);
     //     }
     // }
+
+
 
     // normal condition 
     if (*value_A1> BLACK_LINE_DETECT_THRESHOLD && *value_A2 > BLACK_LINE_DETECT_THRESHOLD){
@@ -61,6 +63,7 @@ void line_tracking(FourWheel *car){
         car->moveForward(200);
         delay(200);
     }
+   
     delete value_A0;
     delete value_A1;
     delete value_A2;

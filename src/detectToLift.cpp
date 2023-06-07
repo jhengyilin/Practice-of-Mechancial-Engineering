@@ -17,10 +17,17 @@ void setupTwoServo() {
   attachAndSetServo(WingServo_back, LIFT_SERVO_PIN_Back);
 }
 
-// sleep 5 seconds and lift 
-void Lift(Servo &front, Servo &back) {
+
+void Lift() {
   setupTwoServo();
-  front.write(240);
-  back.write(240);
+  for (pos = 0; pos <= upper; pos += 1) { // goes from 0 degrees to 180 degrees
+		// in steps of 1 degree
+		WingServo_back.write(pos);
+
+		WingServo_front.write((shifter-pos));     // shifter is the shifting for front motor, the larger the 120, the lower the front motor shift  
+		delay(100);            
+	}
+	
+  Serial.println("Lift");
 }
 

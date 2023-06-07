@@ -6,6 +6,8 @@
 #include "../include/line_tracking.h"
 
 FourWheel vehicle(1500);
+bool liftActivated = false;
+unsigned long startTime = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -19,15 +21,17 @@ void setup() {
   pinMode (IN_A2, INPUT);
   pinMode (IN_A3, INPUT);
   
+  startTime = millis();
+  
 }
 
 void loop() {
   // sleep five seconds and use only once 
   // current not needed in midterm test
-  // if (millis() - startTime >= 5000 && !five_seconds) {
-  //     Lift();
-  //     five_seconds = true;
-  // }
+  if (millis() - startTime >= 5000 && !liftActivated) {
+      Lift();
+      liftActivated = true;
+  }
 
   // reads the analog input from the IR distance sensor
   line_tracking(&vehicle);

@@ -37,17 +37,17 @@ void FourWheel::moveForward(int pulseWidth) {
 }
 
 void FourWheel::turnRight(int pulseWidth) {
-  frontRight.writeMicroseconds(1500 + pulseWidth);
+  frontRight.writeMicroseconds(1500 - pulseWidth + 400);
   frontLeft.writeMicroseconds(1500 + pulseWidth);
-  backRight.writeMicroseconds(1500 + pulseWidth);
+  backRight.writeMicroseconds(1500 - pulseWidth + 400);
   backLeft.writeMicroseconds(1500 + pulseWidth);
 }
 
 void FourWheel::turnLeft(int pulseWidth) {
   frontRight.writeMicroseconds(1500 - pulseWidth);
-  frontLeft.writeMicroseconds(1500 - pulseWidth);
+  frontLeft.writeMicroseconds(1500 + pulseWidth - 400);
   backRight.writeMicroseconds(1500 - pulseWidth);
-  backLeft.writeMicroseconds(1500 - pulseWidth);
+  backLeft.writeMicroseconds(1500 + pulseWidth - 400);
 }
 
 void FourWheel::attachAndSetServo(Servo &servo, int pin) {

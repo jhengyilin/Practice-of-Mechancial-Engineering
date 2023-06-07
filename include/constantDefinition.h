@@ -2,10 +2,14 @@
 #define constantDefinition_h
 
 // Pins for 4 wheel servo motors
-const int frontRightPin = 22;
+const int frontRightPin = 21;
 const int frontLeftPin = 23;
-const int backRightPin = 33;
-const int backLeftPin = 32;
+const int backRightPin = 32;
+const int backLeftPin = 34;
+// Pin definition for the lifting servo motor
+#define LIFT_SERVO_PIN_Front 5
+#define LIFT_SERVO_PIN_Back 19
+
 
 // Pins for IR sensors
 // The ADC driver API supports ADC1 (8 channels, attached to GPIOs 32 - 39)
@@ -16,13 +20,15 @@ const int IN_A1 = 12; // analog input
 const int IN_A2 = 2; // digital input
 const int IN_A3 = 0; // digital input
 
-// Pin definition for the lifting servo motor
-#define LIFT_SERVO_PIN_Front 18
-#define LIFT_SERVO_PIN_Back 19
+
+// lifiting variable 
+const int shifter = 135;
+const int upper = 90;
+int pos; 
 
 
 // Threshold value++ for the IR sensors to detect black line 
-#define BLACK_LINE_DETECT_THRESHOLD 1500
+#define BLACK_LINE_DETECT_THRESHOLD 800
 
 // Pulse width values for servo motor
 #define WING_DOWN_PAUSE_PULSE 1500
