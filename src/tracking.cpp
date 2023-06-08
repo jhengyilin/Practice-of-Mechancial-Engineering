@@ -50,7 +50,13 @@ void line_tracking(FourWheel *car, bool stop){
         delay(200);
     }
     else if (*value_A1 < BLACK_LINE_DETECT_THRESHOLD && *value_A2 < BLACK_LINE_DETECT_THRESHOLD && stop == true){
+        car->turnLeft(100);
+        delay(50);
+        car->moveForward(100);
+        delay(50);
         car->pause_motor();
+
+        delay(1000);
     }
     else if (*value_A1 > BLACK_LINE_DETECT_THRESHOLD){ // the left touches the blackline
         // turn left 

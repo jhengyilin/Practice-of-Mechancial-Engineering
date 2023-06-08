@@ -36,7 +36,7 @@ void loop() {
   if (millis() - startTime <= 18000){// assume 
     vehicle.moveForward(200);
   }
-  else if(millis() - startTime >= 21000){
+  else if(millis() - startTime >= 22000){
     line_tracking(&vehicle, true);
   }
   else{

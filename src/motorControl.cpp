@@ -38,13 +38,13 @@ void FourWheel::moveForward(int pulseWidth) {
 
 void FourWheel::turnRight(int pulseWidth) {
   frontRight.writeMicroseconds(1500 - pulseWidth);
-  frontLeft.writeMicroseconds(1500 + pulseWidth + 300);
+  frontLeft.writeMicroseconds(1500 + pulseWidth + 200);
   backRight.writeMicroseconds(1500 - pulseWidth);
   backLeft.writeMicroseconds(1500 + pulseWidth + 200);
 }
 
 void FourWheel::turnLeft(int pulseWidth) {
-  frontRight.writeMicroseconds(1500 - pulseWidth - 300);
+  frontRight.writeMicroseconds(1500 - pulseWidth - 200);
   frontLeft.writeMicroseconds(1500 + pulseWidth);
   backRight.writeMicroseconds(1500 - pulseWidth - 200);
   backLeft.writeMicroseconds(1500 + pulseWidth);
