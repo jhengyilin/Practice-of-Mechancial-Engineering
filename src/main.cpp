@@ -29,8 +29,8 @@ void loop() {
   // sleep five seconds and use only once 
   // current not needed in midterm test
   if (millis() - startTime >= 5000 && !liftActivated) {
-      Lift();
-      liftActivated = true;
+    Lift();
+    liftActivated = true;
   }
 
   // reads the analog input from the IR distance sensor

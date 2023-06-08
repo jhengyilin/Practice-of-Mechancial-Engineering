@@ -5,7 +5,7 @@
 const int frontRightPin = 21;
 const int frontLeftPin = 23;
 const int backRightPin = 32;
-const int backLeftPin = 34;
+const int backLeftPin = 25; 
 // Pin definition for the lifting servo motor
 #define LIFT_SERVO_PIN_Front 5
 #define LIFT_SERVO_PIN_Back 19
@@ -14,18 +14,17 @@ const int backLeftPin = 34;
 // Pins for IR sensors
 // The ADC driver API supports ADC1 (8 channels, attached to GPIOs 32 - 39)
 // and ADC2 (10 channels, attached to GPIOs 0, 2, 4, 12 - 15 and 25 - 27)
-const int IN_A0 = 14; // analog input
-const int IN_A1 = 12; // analog input
+const int IN_A0 = 100; // analog input
+const int IN_A1 = 2; // analog input
 
-const int IN_A2 = 2; // digital input
-const int IN_A3 = 0; // digital input
+const int IN_A2 = 14; // digital input
+const int IN_A3 = 99; // digital input
 
 
 // lifiting variable 
 const int shifter = 135;
 const int upper = 90;
-int pos; 
-
+const int pos = 90;
 
 // Threshold value++ for the IR sensors to detect black line 
 #define BLACK_LINE_DETECT_THRESHOLD 800
