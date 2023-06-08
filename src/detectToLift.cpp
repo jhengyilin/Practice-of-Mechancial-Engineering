@@ -20,17 +20,18 @@ void setupTwoServo() {
 
 void Lift() {
   setupTwoServo();
-  WingServo_front.write(pos);
-  WingServo_back.write(pos);
+
+  // WingServo_front.write(pos);
+  // WingServo_back.write(shifter-pos);
 
 
-  // for (int pos = 0; pos <= upper; pos += 1) { // goes from 0 degrees to 180 degrees
-	// 	// in steps of 1 degree
-	// 	WingServo_back.write(pos);
+  for (int pos = 0; pos <= upper; pos += 5) { // goes from 0 degrees to 180 degrees
+		// in steps of 1 degree
+		WingServo_back.write(pos);
 
-	// 	WingServo_front.write((shifter-pos));     // shifter is the shifting for front motor, the larger the 120, the lower the front motor shift  
-	// 	delay(100);            
-	// }
+		WingServo_front.write((shifter-pos));     // shifter is the shifting for front motor, the larger the 120, the lower the front motor shift  
+		delay(100);            
+	}
 	
   Serial.println("Lift");
 }

@@ -24,7 +24,7 @@ const int IN_A3 = 99; // digital input
 // lifiting variable 
 const int shifter = 135;
 const int upper = 90;
-const int pos = 90;
+// const int pos = 90;
 
 // Threshold value++ for the IR sensors to detect black line 
 #define BLACK_LINE_DETECT_THRESHOLD 800

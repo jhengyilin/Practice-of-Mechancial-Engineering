@@ -4,7 +4,7 @@
 #include "detectToLift.h"
 #include "motorControl.h"
 
-void line_tracking(FourWheel *car){
+void line_tracking(FourWheel *car, bool stop){
     int* value_A0 = new int;
     int* value_A1 = new int;
     int* value_A2 = new int;
@@ -48,6 +48,9 @@ void line_tracking(FourWheel *car){
     if (*value_A1> BLACK_LINE_DETECT_THRESHOLD && *value_A2 > BLACK_LINE_DETECT_THRESHOLD){
         car->moveForward(200);
         delay(200);
+    }
+    else if (*value_A1 < BLACK_LINE_DETECT_THRESHOLD && *value_A2 < BLACK_LINE_DETECT_THRESHOLD && stop == true){
+        car->pause_motor();
     }
     else if (*value_A1 > BLACK_LINE_DETECT_THRESHOLD){ // the left touches the blackline
         // turn left 

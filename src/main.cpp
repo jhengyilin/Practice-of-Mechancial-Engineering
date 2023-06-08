@@ -28,11 +28,22 @@ void setup() {
 void loop() {
   // sleep five seconds and use only once 
   // current not needed in midterm test
-  if (millis() - startTime >= 5000 && !liftActivated) {
+  if (millis() - startTime >= 8000 && !liftActivated) {
     Lift();
     liftActivated = true;
   }
 
+  if (millis() - startTime <= 18000){// assume 
+    vehicle.moveForward(200);
+  }
+  else if(millis() - startTime >= 21000){
+    line_tracking(&vehicle, true);
+  }
+  else{
+    line_tracking(&vehicle, false);
+  }
+
+
   // reads the analog input from the IR distance sensor
-  line_tracking(&vehicle);
+  
 }
